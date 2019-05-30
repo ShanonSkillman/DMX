@@ -1,7 +1,8 @@
 import React from 'react'
 
 import { TouchableOpacity, TouchableWithoutFeedback, SafeAreaView, StatusBar, KeyboardAvoidingView, Keyboard, Alert, Animated, StyleSheet, Text, View } from 'react-native';
-
+// AWS Amplify
+import Auth from '@aws-amplify/auth'
 import {
     Container,
     Item,
@@ -55,8 +56,45 @@ export default class ForgetPasswordScreen extends React.Component {
         this.setState({ isHidden: false })
     }
 
+    // Request a new password
+async forgotPassword() {
+    const { username } = this.state
+    await Auth.forgotPassword(username)
+    .then(data => console.log('New code sent', data))
+    .catch(err => {
+      if (! err.message) {
+        console.log('Error while setting up the new password: ', err)
+        Alert.alert('Error while setting up the new password: ', err)
+      } else {
+        console.log('Error while setting up the new password: ', err.message)
+        Alert.alert('Error while setting up the new password: ', err.message)
+      }
+    })
+  }
+  
+  // Upon confirmation redirect the user to the Sign In page
+  async forgotPasswordSubmit() {
+    const { username, authCode, newPassword } = this.state
+    await Auth.forgotPasswordSubmit(username, authCode, newPassword)
+    .then(() => {
+      this.props.navigation.navigate('SignIn')
+      console.log('the New password submitted successfully')
+    })
+    .catch(err => {
+      if (! err.message) {
+        console.log('Error while confirming the new password: ', err)
+        Alert.alert('Error while confirming the new password: ', err)
+      } else {
+        console.log('Error while confirming the new password: ', err.message)
+        Alert.alert('Error while confirming the new password: ', err.message)
+      }
+    })
+  }
+
     render() {
         let { fadeOut, fadeIn, isHidden } = this.state
+        
+
         return (
             <SafeAreaView style={styles.container}>
                 <StatusBar />
@@ -97,10 +135,11 @@ export default class ForgetPasswordScreen extends React.Component {
                                         />
                                     </Item>
                                     <TouchableOpacity
-                                        style={styles.buttonStyle}>
-                                        <Text style={styles.buttonText}>
-                                            Send Code
-                    </Text>
+                                    onPress={() => this.forgotPassword()}
+                                    style={styles.buttonStyle}>
+                                    <Text style={styles.buttonText}>
+                                     Send Code
+                                    </Text>
                                     </TouchableOpacity>
                                     {/* the New password section  */}
                                     <Item rounded style={styles.itemStyle}>
@@ -144,6 +183,7 @@ export default class ForgetPasswordScreen extends React.Component {
                                         />
                                     </Item>
                                     <TouchableOpacity
+                                        onPress={() => this.forgotPasswordSubmit()}
                                         style={styles.buttonStyle}>
                                         <Text style={styles.buttonText}>
                                             Confirm the new password

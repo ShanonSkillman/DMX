@@ -5,16 +5,26 @@ import {
   Text,
   ActivityIndicator
 } from 'react-native'
-import { AsyncStorage } from 'react-native'
+// import { AsyncStorage } from 'react-native'
+// AWS Amplify
+import Auth from '@aws-amplify/auth'
 
 //Step 2 Add user token 
 export default class AuthLoadingScreen extends React.Component {
-  componentDidMount = async () => {
+  state = {
+    userToken: null
+  }
+  async componentDidMount () {
     await this.loadApp()
   }
+  //remember logged in users
   loadApp = async () => {
-    const userToken = await AsyncStorage.getItem('userToken')
-    this.props.navigation.navigate(userToken ? 'App' : 'Auth')
+    await Auth.currentAuthenticatedUser()
+    .then(user => {
+      this.setState({userToken: user.signInUserSession.accessToken.jwtToken})
+    })
+    .catch(err => console.log(err))
+    this.props.navigation.navigate(this.state.userToken ? 'App' : 'Auth')
   }
 
   render() {

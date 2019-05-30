@@ -22,10 +22,10 @@ import HomeScreen from './src/components/screens/HomeScreen'
 import SettingsScreen from './src/components/screens/SettingsScreen'
 import ProfileScreen from './src/components/screens/ProfileScreen'
 
-// Amplify imports and config
-// import Amplify from '@aws-amplify/core'
-// import config from './aws-exports'
-// Amplify.configure(config)
+//Amplify imports and config
+import Amplify from '@aws-amplify/core'
+import config from './src/aws-exports'
+Amplify.configure(config)
 
 // Configurations and options for the AppTabNavigator
 const configurations = {

@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, AsyncStorage, TouchableOpacity, TouchableWithoutFeedback, SafeAreaView, StatusBar, KeyboardAvoidingView, Keyboard, Alert, Animated } from 'react-native';
-
+// AWS Amplify
+import Auth from '@aws-amplify/auth'
 import { Container, Item, Input, Icon } from 'native-base'
 // Load the app logo
 const logo = require('../images/logo.png')
@@ -47,8 +48,21 @@ export default class SignInScreen extends React.Component {
     }
     //Step 10 add asyncstorage & touchable opacity import & add user token
     signIn = async () => {
-        await AsyncStorage.setItem('userToken', '123456789')
-        this.props.navigation.navigate('Authloading')
+        const { username, password } = this.state
+        await Auth.signIn(username, password)
+        .then(user => {
+          this.setState({ user })
+          this.props.navigation.navigate('Authloading')
+        })
+        .catch(err => {
+          if (! err.message) {
+            console.log('Error when signing in: ', err)
+            Alert.alert('Error when signing in: ', err)
+          } else {
+            console.log('Error when signing in: ', err.message)
+            Alert.alert('Error when signing in: ', err.message)
+          }
+        })
     }
     render() {
         let { fadeOut, fadeIn, isHidden } = this.state

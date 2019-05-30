@@ -16,6 +16,7 @@ import {
 } from 'react-native'
 
 import { Container, Item, Input, Icon } from 'native-base'
+import { Auth } from 'aws-amplify';
 
 export default class SettingsScreen extends React.Component {
   state = {
@@ -27,11 +28,54 @@ export default class SettingsScreen extends React.Component {
     this.setState({ [key]: value })
 
   }
-  //Step 19 add signout button
-  async signOut() {
-    await AsyncStorage.clear()
-    this.props.navigation.navigate('Authloading')
+
+  //Changing User Password for the App
+  changePassword = async () => {
+    const { password1, password2 } = this.state
+    await Auth.currentAuthenticatedUser()
+      .then(user => {
+        return Auth.changePassword(user, password1, password2)
+      })
+      .then(data => console.log('Hooray! Your password has been changed successfully!'))
+      .catch(err => {
+        if (!err.message) {
+          console.log('ERROR Changing Password: ', err)
+          Alert.alert('ERROR Changing Password: ', err)
+        } else {
+          console.log('Error Changing Password: ', err.message)
+          Alert.alert('Error Changing Password: ', err.message)
+        }
+      })
   }
+
+  //Signing Out from the App
+  signOutAlert = async () => {
+    await Alert.alert(
+      'Sign Out',
+      'Are you sure you want to sign out from this app?',
+      [
+        { text: 'Cancel', onPress: () => console.log('Canceled'), style: 'cancel' }
+        { text: 'OK', onPres: () => this.signOut() },
+      ],
+      { cancelable: false }
+    )
+  }
+
+  signOut = async () => {
+    await Auth.signOut()
+      .then(() => {
+        console.log('Sign Out Complete')
+        this.props.navigation.navigate('Authloading')
+      })
+      .catch(err => console.log('Error while signing out!', err))
+  }
+
+
+  //Step 19 add signout button
+  // async signOut() {
+  //   await AsyncStorage.clear()
+  //   this.props.navigation.navigate('Authloading')
+  // }
   render() {
     return (
       <SafeAreaView style={styles.container}>

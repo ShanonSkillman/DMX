@@ -10,5 +10,17 @@
             "StackName": "dmx-master-20190601153306",
             "StackId": "arn:aws:cloudformation:us-west-2:504041726305:stack/dmx-master-20190601153306/5f848960-84d6-11e9-8e3f-0a473bf201de"
         }
+    },
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "dmx-dev-20190601153740-authRole",
+            "UnauthRoleArn": "arn:aws:iam::504041726305:role/dmx-dev-20190601153740-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::504041726305:role/dmx-dev-20190601153740-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "dmx-dev-20190601153740-deployment",
+            "UnauthRoleName": "dmx-dev-20190601153740-unauthRole",
+            "StackName": "dmx-dev-20190601153740",
+            "StackId": "arn:aws:cloudformation:us-west-2:504041726305:stack/dmx-dev-20190601153740/02dec620-84d7-11e9-af21-021a2c452506"
+        }
     }
 }

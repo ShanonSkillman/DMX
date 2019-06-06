@@ -29,7 +29,7 @@ import Auth from '@aws-amplify/auth'
 import data from '../countryCode'
 
 // Load the app logo
-const logo = require('../images/logo.png')
+const logo = require('../images/dmxlogo1.png')
 
 // Default render of country flag
 const defaultFlag = data.filter(
@@ -196,6 +196,7 @@ export default class SignUpScreen extends React.Component {
                     style={{ opacity: fadeOut, width: 110.46, height: 117 }}/>
                 }
               </View>
+  
               <Container style={styles.infoContainer}>
                 <View style={styles.container}>
                   {/* username section  */}
@@ -385,15 +386,15 @@ export default class SignUpScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#5059ae',
+    backgroundColor: '#EFEAF2',
     justifyContent: 'center',
     flexDirection: 'column'
   },
   input: {
     flex: 1,
-    fontSize: 17,
+    fontSize: 15,
     fontWeight: 'bold',
-    color: '#fff',
+    color: '#000000',
   },
   infoContainer: {
     position: 'absolute',
@@ -404,23 +405,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 30,
-    backgroundColor: '#5059ae',
+    // paddingHorizontal: 10,
+    // backgroundColor: '#000000',
   },
   itemStyle: {
     marginBottom: 10,
   },
   iconStyle: {
-    color: '#fff',
+    color: '#96ACB0',
     fontSize: 28,
     marginRight: 15
   },
   buttonStyle: {
     alignItems: 'center',
-    backgroundColor: '#b44666',
+    backgroundColor: '#6E9EC5',
     padding: 14,
-    marginBottom: 10,
+    margin: 10,
     borderRadius: 3,
+    
   },
   buttonText: {
     fontSize: 18,

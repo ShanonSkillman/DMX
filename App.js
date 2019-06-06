@@ -32,7 +32,7 @@ const configurations = {
   Home: {
     screen: HomeScreen,
     navigationOptions: {
-      tabBarLabel: 'Home',
+      tabBarLabel: 'The Market',
       tabBarIcon: ({ tintColor }) => (
         <Ionicons style={{ fontSize: 26, color: tintColor }} name="ios-home" />
       )
@@ -41,7 +41,7 @@ const configurations = {
   Profile: {
     screen: ProfileScreen,
     navigationOptions: {
-      tabBarLabel: 'Profile',
+      tabBarLabel: 'My Account',
       tabBarIcon: ({ tintColor }) => (
         <Ionicons style={{ fontSize: 26, color: tintColor }} name="ios-person" />
       )
@@ -60,7 +60,7 @@ const configurations = {
 
 const options = {
   tabBarPosition: 'bottom',
-  swipeEnabled: true,
+  swipeEnabled: false,
   animationEnabled: true,
   navigationOptions: {
     tabBarVisible: true
@@ -70,7 +70,7 @@ const options = {
     activeTintColor: '#fff',
     inactiveTintColor: '#fff9',
     style: {
-      backgroundColor: '#f16f69',
+      backgroundColor: '#4EA1CA',
     },
     labelStyle: {
       fontSize: 12,
@@ -101,15 +101,15 @@ const AppStackNavigator = createStackNavigator({
   Header: {
     screen: AppTabNavigator,
     // Set the header icon
-    navigationOptions: ({ navigation }) => ({
-      headerLeft: (
-        <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-          <View style={{ paddingHorizontal: 10 }}>
-            <Ionicons size={24} name="md-menu" />
-          </View>
-        </TouchableOpacity>
-      )
-    })
+    // navigationOptions: ({ navigation }) => ({
+    //   headerLeft: (
+    //     <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+    //       <View style={{ paddingHorizontal: 10 }}>
+    //         <Ionicons size={24} name="md-menu" />
+    //       </View>
+    //     </TouchableOpacity>
+    //   )
+    // })
   }
 })
 
@@ -126,7 +126,7 @@ const AuthStackNavigator = createStackNavigator({
   Welcome: {
     screen: WelcomeScreen,
     navigationOptions: () => ({
-      title: `Welcome to this App`, // for the header screen
+      title: `Welcome to DMX`, // for the header screen
       headerBackTitle: 'Back'
     }),
   },

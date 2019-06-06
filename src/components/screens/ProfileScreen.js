@@ -5,12 +5,22 @@ import {
   StyleSheet,
   View,
   Text,
+  Image
 } from 'react-native'
+import UserData from '../userData';
+
+const profilePic = require('../images/profilepic.png')
+
 export default class ProfileScreenName extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Testing ProfileScreen Name</Text>
+        <View>
+        <Image source={profilePic} style={styles.mainPic} />
+        </View>
+        <View style={styles.userData}>
+        < UserData />
+        </View>
       </View>
     )
   }
@@ -18,8 +28,29 @@ export default class ProfileScreenName extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#aa73b7',
+    backgroundColor: '#D9D3F7',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
+    
   },
+  mainPic: {
+    height: 220,
+    width: 220,
+    borderRadius: 80,
+    marginBottom: 400
+  },
+  userData: {
+    flex: 1,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    height: 380,
+    bottom: 25,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 30,
+    backgroundColor: '#EFEDF7',
+  }
+
 })

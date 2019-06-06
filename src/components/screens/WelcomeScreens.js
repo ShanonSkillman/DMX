@@ -7,12 +7,15 @@ import {
     View,
     Text,
     TouchableOpacity,
-    Image
+    Image,
 } from 'react-native'
+
 //imported Touchable Opacity creates buttons 
 
+// import { Button } from "native-base"
+
 // Load the app logo
-const logo = require('../images/logo.png')
+const logo = require('../images/dmxlogo1.png')
 
 
 export default class WelcomeScreens extends React.Component {
@@ -23,21 +26,16 @@ export default class WelcomeScreens extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Image source={logo} />
-                <TouchableOpacity
+                <Image style={styles.logo} source={logo} />
+                <TouchableOpacity style={styles.buttonStyle}
                     onPress={() => this.props.navigation.navigate('SignUp')}
-                    style={styles.buttonStyle}>
+                    >
                     <Text style={styles.textStyle}>Sign up</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
+                <TouchableOpacity style={styles.buttonStyle}
                     onPress={() => this.props.navigation.navigate('SignIn')}
-                    style={styles.buttonStyle}>
+                    >
                     <Text style={styles.textStyle}>Sign in</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('ForgetPassword')}
-                    style={styles.buttonStyle}>
-                    <Text style={styles.textStyle}>Forget password ?</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -47,15 +45,32 @@ export default class WelcomeScreens extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#aa73b7',
+        backgroundColor: '#DDF0F2',
         alignItems: 'center',
         justifyContent: 'center',
+        
     },
     buttonStyle: {
-        padding: 20,
+            alignItems: 'center',
+            padding: 14,
+            width: '90%',
+            margin: 10,
+            borderRadius: 10,
+            borderColor: '#CCD8DA',
+            borderWidth: 2,
+            backgroundColor: '#ffffff'
+    
     },
     textStyle: {
-        fontSize: 18,
-        padding: 10
+        fontSize: 20,
+        fontWeight: 'bold',
+        padding: 6,
+        color: '#3DBDD1',
+        fontFamily: 'Heiti SC',
+        textTransform: 'uppercase'
+    },
+    logo: {
+        height: 200,
+        width: 200
     }
 })

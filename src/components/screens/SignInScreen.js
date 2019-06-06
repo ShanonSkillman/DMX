@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, AsyncStorage, TouchableOpacity, TouchableWithou
 import Auth from '@aws-amplify/auth'
 import { Container, Item, Input, Icon } from 'native-base'
 // Load the app logo
-const logo = require('../images/logo.png')
+const logo = require('../images/dmxlogo1.png')
 //Step 4 build out Sign In Screen 
 export default class SignInScreen extends React.Component {
     state = {
@@ -74,13 +74,14 @@ export default class SignInScreen extends React.Component {
                         <View style={styles.logoContainer}>
                             {
                                 isHidden ?
-                                    <Animated.Image source={logo} style={{ opacity: fadeIn }} />
+                                    <Animated.Image source={logo} style={{ opacity: fadeIn, width: 150, height: 150 }} />
                                     :
-                                    <Animated.Image source={logo} style={{ opacity: fadeOut, width: 113.46, height: 117 }} />
+                                    <Animated.Image source={logo} style={{ opacity: fadeOut, width: 100.46, height: 100 }} />
                             }
                         </View>
                         <Container style={styles.infoContainer}>
-                            <View style={styles.container}>
+                            <View style={styles.infoContainer}>
+                                <Text>Please log in to explore the marketplace.</Text>
                                 <Item rounded style={styles.itemStyle}>
                                     <Icon
                                         active
@@ -126,6 +127,11 @@ export default class SignInScreen extends React.Component {
                                         Sign In
                     </Text>
                                 </TouchableOpacity>
+                                <TouchableOpacity style={styles.buttonStyle}
+                    onPress={() => this.props.navigation.navigate('ForgetPassword')}
+                  >
+                    <Text style={styles.buttonText}>Forgot password?</Text>
+                </TouchableOpacity>
                             </View>
                         </Container>
                     </View>
@@ -140,7 +146,7 @@ export default class SignInScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#aa73b7',
+        backgroundColor: '#DDF2E2',
         justifyContent: 'center',
         flexDirection: 'column'
     },
@@ -151,19 +157,22 @@ const styles = StyleSheet.create({
         color: '#5a52a5',
     },
     infoContainer: {
+        flex: 1,
         position: 'absolute',
         left: 0,
         right: 0,
-        height: 200,
+        height: 380,
         bottom: 25,
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 30,
-        backgroundColor: '#aa73b7',
+        backgroundColor: '#F0F8F5',
     },
     itemStyle: {
         marginBottom: 20,
+        marginTop: 10,
+        backgroundColor: '#ffffff'
     },
     iconStyle: {
         color: '#5a52a5',
@@ -172,13 +181,14 @@ const styles = StyleSheet.create({
     },
     buttonStyle: {
         alignItems: 'center',
-        backgroundColor: '#667292',
+        backgroundColor: '#6E9EC5',
         padding: 14,
-        marginBottom: 20,
-        borderRadius: 24,
+        marginBottom: 10,
+        borderRadius: 10,
+        width: '50%'
     },
     buttonText: {
-        fontSize: 18,
+        fontSize: 15,
         fontWeight: 'bold',
         color: "#fff",
     },
@@ -187,7 +197,7 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         height: 400,
-        bottom: 180,
+        bottom: 350,
         alignItems: 'center',
         justifyContent: 'center',
         flex: 1,

@@ -1,0 +1,9 @@
+{
+  "name": "faas",
+  "description": "",
+  "version": "0.1.0",
+  "dependencies": {},
+  "devDependencies": {
+    "serverless-offline": "^4.10.6"
+  }
+}

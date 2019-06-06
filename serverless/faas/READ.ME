@@ -1,0 +1,28 @@
+# STEPS to creating the lambda & gateway api...
+https://serverless.com/framework/docs/providers/aws/guide/quick-start/
+
+# go to serverless directory
+# generate the lambda.
+$ sls create -t aws-nodejs -p faas
+
+# drill down to faas directory
+$ cd faas
+
+# test it locally w/o gateway
+$ sls invoke local -f test
+
+# next, create the api gateway as a proxy
+# add serverless-plugin (installing, then adding to yml file)
+# run inside service directory (faas)
+$ sudo sls plugin install -n serverless-offline
+
+# run lambda test through newly created api gateway (sls offline)
+  -- don't use state/region here...
+$ sls offline start --port 4500
+
+
+# then look at browser: http://localhost:4500/users
+
+# How to deploy lambda fx
+#  add stage & region
+$ sls deploy list
